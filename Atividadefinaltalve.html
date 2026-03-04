@@ -18,6 +18,17 @@
         nav{
             text-align: center;
         }
+        
+        section {
+            padding: 20px;
+        }
+
+          aside {
+            background-color: #ddd;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
 
     </style>
 </head>
@@ -53,9 +64,10 @@
                 <h3>Cabo Coxial</h3>
                 <p>Foi inventado na década de 1930. O cabo coaxial consiste em um núcleo de fio de cobre cercado por uma blindagem metálica trançada e uma cobertura externa isolante</p>
                 <img src="https://cdn.awsli.com.br/254/254944/produto/339715926/02---cabo-coaxial-digital-75-ohms-blindado-100--cobre---ion-cabos---02-nz88a7y1es.png" height="280" alt="cabo coaxial">
+                <p>Tem uma velocidade de no máximo 10mbps.</p>
                 <ul>
                     <li>Desvantagens</li>
-                    <p>Limitação de 10 Mbps</p>
+                    <p>Limitação de 10 Mbps.</p>
                     <p>Precisa de terminais especiais</p>
                     </p>
                 </ul>
@@ -68,7 +80,8 @@
             <article>
                 <h3>Cabo Trançado</h3>
                 <p>Com seu uso iniciado na década de 1990, o cabo de par trançado é um tipo de conexão, sendo principal padrão de cabeamento para Ethernet, começando com 10 Mbps.</p>
-                <img src="https://images.tcdn.com.br/img/img_prod/603604/cabo_de_rede_furukawa_multilan_cat5e_homologado_anatel_24awg_metro_2743_1_20200328090106.png" height="280" alt="cabo trançado">
+                <img src ="https://images.tcdn.com.br/img/img_prod/603604/cabo_de_rede_furukawa_multilan_cat5e_homologado_anatel_24awg_metro_2743_1_20200328090106.png" height="280" alt="cabo trançado">
+                <p>Tem uma velocidade máxima de até 100mbps.</p>
                 <ul>
                     <li>Desvantagens</li>
                     <p>Alcance limitado</p>
@@ -83,8 +96,9 @@
 
             <article>
                 <h3>Fica Óptica</h3>
-                <p>A fibra ótica é um meio de transmissão, consistindo de um fio muito fino de material transparente, vidro ou materiai plásticos, pelo qual pulsos de luz são enviados que representam os dados a serem transmitidos.</p>
+                <p>A fibra ótica é um meio de transmissão, consistindo de um fio muito fino de material transparente, vidro ou materiais plásticos, pelo qual pulsos de luz são enviados que representam os dados a serem transmitidos.</p>
                 <img src="https://files.tecnoblog.net/wp-content/uploads/2022/03/cabo-fibra-optica-otica-1-1060x596.jpg" height="280" alt="fibra óptica">
+                <p>Pode chegar a uma taxa de transmissão de 1gbps.</p>
                 <ul>    
                 <li>Desvantagens</li>
                     <p>Quebra com tudo, até com calor</p>
@@ -94,6 +108,31 @@
         </section>
     </div>
 
+    <form>
+        <fieldset>
+            <legend>Vamos aplicar o que aprendemos</legend>
+        
+            <label for="nome">Nome</label><br>
+            <input type="text" id="nome" name="nome"><br><br>
+            
+            <label>Qual cabo foi criado primeiro?</label><br>
+            <input type="radio" name="cabo"> Coaxial
+            <input type="radio" name="cabo"> Trançado
+             <input type="radio" name="cabo"> Fibra Óptica<br><br>
 
+             <label for="velocidade">Qual tem a maior velocidade de transmissão?</label>
+            <select id="velocidade">
+                <option>Coaxial</option>
+                <option>Trançado</option>
+                <option>Fibra Óptica</option>
+            </select><br><br>
+
+            <label>Qual deles seria o melhor em um ambiente empresarial?:</label><br>
+            <input type="radio" name="melhor"> Coaxial
+            <input type="radio" name="melhor"> Trançado
+            <input type="radio" name="melhor"> Fibra Óptica<br><br>
+
+        </fieldset>
+    </form>
 
 </body>
