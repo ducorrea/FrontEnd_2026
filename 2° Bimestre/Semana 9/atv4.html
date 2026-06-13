@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Infinity Bank</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+
+        input, select, button{
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        #resultado{
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Simulador Infinity Bank</h1>
+
+    <label>Bandeira:</label>
+    <select id="bandeira">
+        <option value="visa">Visa</option>
+        <option value="master">Master</option>
+        <option value="elo">Elo</option>
+    </select>
+
+    <label>Valor da Venda (R$):</label>
+    <input type="number" id="valor" step="0.01">
+
+    <label>Quantidade de Parcelas:</label>
+    <input type="number" id="parcelas" min="1">
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function calcular() {
+
+            let bandeira = document.getElementById("bandeira").value;
+            let valor = Number(document.getElementById("valor").value);
+            let parcelas = Number(document.getElementById("parcelas").value);
+
+            let taxaPercentual;
+
+            switch(bandeira){
+                case "visa":
+                    taxaPercentual = 0.02;
+                    break;
+
+                case "master":
+                    taxaPercentual = 0.0185;
+                    break;
+
+                case "elo":
+                    taxaPercentual = 0.03;
+                    break;
+            }
+
+            let taxaBandeira = valor * taxaPercentual;
+
+            // Juros simples (1,5% por parcela conforme apoio)
+            let juros = valor * (0.015 * parcelas);
+
+            // Taxa fixa mensal
+            let taxaMensal = 12.50 * parcelas;
+
+            let valorTotal = valor + taxaBandeira + juros + taxaMensal;
+
+            let valorParcela = valorTotal / parcelas;
+
+            document.getElementById("resultado").innerHTML = `
+                <h3>Resumo da Venda</h3>
+                <p><strong>Taxa da Bandeira:</strong> R$ ${taxaBandeira.toFixed(2)}</p>
+                <p><strong>Juros:</strong> R$ ${juros.toFixed(2)}</p>
+                <p><strong>Taxa Mensal:</strong> R$ ${taxaMensal.toFixed(2)}</p>
+                <p><strong>Valor Total:</strong> R$ ${valorTotal.toFixed(2)}</p>
+                <p><strong>Valor de Cada Parcela:</strong> R$ ${valorParcela.toFixed(2)}</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Card Guard</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#f4f4f4;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:100vh;
+    }
+
+    .card{
+        width:500px;
+        background:white;
+        padding:20px;
+        border-radius:10px;
+        box-shadow:0 0 10px rgba(0,0,0,.2);
+    }
+
+    input, button{
+        width:100%;
+        padding:10px;
+        margin:10px 0;
+    }
+
+    #resultado{
+        margin-top:20px;
+        padding:15px;
+        border:1px solid #ddd;
+        border-radius:8px;
+    }
+
+    .valido{
+        color:green;
+        font-weight:bold;
+    }
+
+    .invalido{
+        color:red;
+        font-weight:bold;
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+    <h2>💳 Card Guard</h2>
+
+    <input
+        type="text"
+        id="cartao"
+        maxlength="19"
+        placeholder="Digite o número do cartão">
+
+    <button onclick="analisarCartao()">
+        Analisar Cartão
+    </button>
+
+    <div id="resultado"></div>
+
+</div>
+
+<script>
+
+function validarLuhn(numero){
+
+    let soma = 0;
+    let dobrar = false;
+
+    for(let i = numero.length - 1; i >= 0; i--){
+
+        let digito = parseInt(numero[i]);
+
+        if(dobrar){
+            digito *= 2;
+
+            if(digito > 9){
+                digito -= 9;
+            }
+        }
+
+        soma += digito;
+        dobrar = !dobrar;
+    }
+
+    return soma % 10 === 0;
+}
+
+function obterBandeira(numero){
+
+    if(numero.startsWith("4"))
+        return "Visa";
+
+    if(/^5[1-5]/.test(numero))
+        return "MasterCard";
+
+    if(/^3[47]/.test(numero))
+        return "American Express";
+
+    if(/^6/.test(numero))
+        return "Discover";
+
+    return "Desconhecida";
+}
+
+function obterSetor(numero){
+
+    switch(numero[0]){
+
+        case "1":
+            return "Companhias Aéreas";
+
+        case "2":
+            return "Serviços Financeiros";
+
+        case "3":
+            return "Viagens e Entretenimento";
+
+        case "4":
+        case "5":
+            return "Bancos e Instituições Financeiras";
+
+        case "6":
+            return "Comércio e Serviços";
+
+        default:
+            return "Não identificado";
+    }
+}
+
+function obterBanco(numero){
+
+    let prefixo = numero.substring(0,4);
+
+    switch(prefixo){
+
+        case "4011":
+            return "Banco Exemplo Visa";
+
+        case "5100":
+            return "Banco Exemplo Master";
+
+        case "3782":
+            return "Banco Exemplo Amex";
+
+        default:
+            return "Banco não identificado";
+    }
+}
+
+function analisarCartao(){
+
+    let numero = document
+        .getElementById("cartao")
+        .value
+        .replace(/\s/g,"")
+        .replace(/\./g,"");
+
+    const resultado =
+        document.getElementById("resultado");
+
+    if(numero.length < 13 || numero.length > 16){
+
+        resultado.innerHTML = `
+            <p class="invalido">
+                Número inválido.
+            </p>
+        `;
+
+        return;
+    }
+
+    let valido = validarLuhn(numero);
+
+    let bandeira = obterBandeira(numero);
+    let setor = obterSetor(numero);
+    let banco = obterBanco(numero);
+
+    resultado.innerHTML = `
+        <h3>Painel de Informações</h3>
+
+        <p class="${valido ? 'valido' : 'invalido'}">
+            Status:
+            ${valido ? 'Válido' : 'Inválido'}
+        </p>
+
+        <p><strong>Bandeira:</strong> ${bandeira}</p>
+
+        <p><strong>Categoria de Setor:</strong> ${setor}</p>
+
+        <p><strong>Banco Emissor:</strong> ${banco}</p>
+    `;
+}
+
+</script>
+
+</body>
+</html>

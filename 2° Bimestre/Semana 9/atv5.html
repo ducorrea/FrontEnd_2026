@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infinity Bank - Convidados VIP</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body{
+        background:#f4f4f4;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:100vh;
+    }
+
+    .card{
+        background:white;
+        width:600px;
+        padding:25px;
+        border-radius:12px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    h1{
+        text-align:center;
+        margin-bottom:20px;
+    }
+
+    .entrada{
+        display:flex;
+        gap:10px;
+        margin-bottom:20px;
+    }
+
+    input{
+        flex:1;
+        padding:10px;
+    }
+
+    button{
+        padding:10px 15px;
+        cursor:pointer;
+    }
+
+    ul{
+        list-style:none;
+    }
+
+    li{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:12px;
+        border-bottom:1px solid #ddd;
+    }
+
+    .acoes{
+        display:flex;
+        gap:5px;
+    }
+
+    .riscado{
+        text-decoration:line-through;
+        color:gray;
+    }
+
+    .btn-concluir{
+        background:#28a745;
+        color:white;
+        border:none;
+    }
+
+    .btn-editar{
+        background:#ffc107;
+        border:none;
+    }
+
+    .btn-excluir{
+        background:#dc3545;
+        color:white;
+        border:none;
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+    <h1>🎉 Infinity Bank - Convidados VIP</h1>
+
+    <div class="entrada">
+        <input type="text" id="nome" placeholder="Digite o nome do convidado">
+        <button onclick="adicionar()">Adicionar</button>
+    </div>
+
+    <ul id="lista"></ul>
+
+</div>
+
+<script>
+
+    let convidados = [];
+
+    function renderizar(){
+
+        const lista = document.getElementById("lista");
+        lista.innerHTML = "";
+
+        convidados.forEach((nome, indice)=>{
+
+            const li = document.createElement("li");
+
+            li.innerHTML = `
+                <span id="nome-${indice}">${nome}</span>
+
+                <div class="acoes">
+                    <button class="btn-concluir"
+                        onclick="concluir(${indice})">
+                        Concluir
+                    </button>
+
+                    <button class="btn-editar"
+                        onclick="editar(${indice})">
+                        Editar
+                    </button>
+
+                    <button class="btn-excluir"
+                        onclick="excluir(${indice})">
+                        Excluir
+                    </button>
+                </div>
+            `;
+
+            lista.appendChild(li);
+        });
+    }
+
+    function adicionar(){
+
+        const input = document.getElementById("nome");
+
+        const nome = input.value.trim();
+
+        if(nome === ""){
+            alert("Digite um nome válido!");
+            return;
+        }
+
+        convidados.push(nome);
+
+        input.value = "";
+
+        renderizar();
+    }
+
+    function concluir(indice){
+
+        const span = document.getElementById(`nome-${indice}`);
+
+        span.classList.toggle("riscado");
+    }
+
+    function editar(indice){
+
+        const novoNome = prompt(
+            "Digite o novo nome:",
+            convidados[indice]
+        );
+
+        if(novoNome && novoNome.trim() !== ""){
+
+            convidados[indice] = novoNome.trim();
+
+            renderizar();
+        }
+    }
+
+    function excluir(indice){
+
+        convidados.splice(indice,1);
+
+        renderizar();
+    }
+
+</script>
+
+</body>
+</html>

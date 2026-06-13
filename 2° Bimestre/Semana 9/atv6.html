@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Crédito para Festas & Eventos</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#f4f4f4;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:100vh;
+    }
+
+    .card{
+        background:white;
+        padding:25px;
+        border-radius:10px;
+        box-shadow:0 0 10px rgba(0,0,0,.2);
+        width:400px;
+    }
+
+    h2{
+        text-align:center;
+    }
+
+    label{
+        display:block;
+        margin-top:10px;
+    }
+
+    select, input, button{
+        width:100%;
+        padding:10px;
+        margin-top:5px;
+    }
+
+    #resultado{
+        margin-top:20px;
+        border-top:1px solid #ccc;
+        padding-top:15px;
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+    <h2>🎉 Crédito para Festas & Eventos</h2>
+
+    <label>Pacote:</label>
+    <select id="pacote">
+        <option value="50">Standard - R$ 50,00</option>
+        <option value="80">Premium - R$ 80,00</option>
+        <option value="120">Infinity Deluxe - R$ 120,00</option>
+    </select>
+
+    <label>Quantidade de Convidados:</label>
+    <input type="number" id="convidados" min="1">
+
+    <button id="calcular">Calcular Orçamento</button>
+
+    <div id="resultado"></div>
+
+</div>
+
+<script>
+
+document.getElementById("calcular")
+.addEventListener("click", calcular);
+
+function calcular(){
+
+    let valorPacote = Number(
+        document.getElementById("pacote").value
+    );
+
+    let convidados = Number(
+        document.getElementById("convidados").value
+    );
+
+    // 1. Cálculo Base
+    let custoBruto = valorPacote * convidados;
+
+    // 2. Taxa de Serviço (10%)
+    let taxaServico = custoBruto * 0.10;
+
+    let subtotal = custoBruto + taxaServico;
+
+    // 3. Desconto Fidelidade (5%)
+    let desconto = 0;
+
+    if(convidados > 100){
+        desconto = subtotal * 0.05;
+    }
+
+    let totalFinal = subtotal - desconto;
+
+    document.getElementById("resultado").innerHTML = `
+        <p><strong>Custo Bruto:</strong>
+        R$ ${custoBruto.toFixed(2)}</p>
+
+        <p><strong>Taxa de Serviço (10%):</strong>
+        R$ ${taxaServico.toFixed(2)}</p>
+
+        <p><strong>Desconto Aplicado:</strong>
+        R$ ${desconto.toFixed(2)}</p>
+
+        <p><strong>Total Final:</strong>
+        R$ ${totalFinal.toFixed(2)}</p>
+    `;
+}
+
+</script>
+
+</body>
+</html>
