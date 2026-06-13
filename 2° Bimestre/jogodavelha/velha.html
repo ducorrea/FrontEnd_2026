@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Jogo da Velha</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+  cursor: pointer;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+</style>
+
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="module">
+
+import React, { StrictMode, useState } from "https://esm.sh/react";
+import { createRoot } from "https://esm.sh/react-dom/client";
+
+function Square({ value }) {
+
+  const [texto, setTexto] = useState(value);
+
+  function clicado() {
+    setTexto("X");
+  }
+
+  return (
+    React.createElement(
+      "button",
+      {
+        className: "square",
+        onClick: clicado
+      },
+      texto
+    )
+  );
+}
+
+function Board() {
+  return (
+    React.createElement(
+      React.Fragment,
+      null,
+
+      React.createElement(
+        "div",
+        { className: "board-row" },
+        React.createElement(Square, { value: "1" }),
+        React.createElement(Square, { value: "2" }),
+        React.createElement(Square, { value: "3" })
+      ),
+
+      React.createElement(
+        "div",
+        { className: "board-row" },
+        React.createElement(Square, { value: "4" }),
+        React.createElement(Square, { value: "5" }),
+        React.createElement(Square, { value: "6" })
+      ),
+
+      React.createElement(
+        "div",
+        { className: "board-row" },
+        React.createElement(Square, { value: "7" }),
+        React.createElement(Square, { value: "8" }),
+        React.createElement(Square, { value: "9" })
+      )
+    )
+  );
+}
+
+const root = createRoot(document.getElementById("root"));
+
+root.render(
+  React.createElement(
+    StrictMode,
+    null,
+    React.createElement(Board)
+  )
+);
+
+</script>
+
+</body>
+</html>
