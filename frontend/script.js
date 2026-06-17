@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+const { useState, useEffect, useRef } from 'react';
 
 const C = {
   primary: '#04CC6A', primaryD: '#03A855', tertiary: '#64FFDA',
