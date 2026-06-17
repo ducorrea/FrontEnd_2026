@@ -1,0 +1,24 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --primary: #04CC6A; --primary-d: #03A855; --secondary: #002A52;
+  --tertiary: #64FFDA; --bg: #0A0F1A; --bg2: #0F172A;
+  --card: #131E30; --card2: #1A2640; --border: #1E3050;
+  --text: #F8FAFC; --muted: #8899AA; --font: 'Space Grotesk', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+#root { min-height: 100vh; }
+
+/* react note banner */
+.react-banner {
+  position: fixed; bottom: 1.2rem; right: 1.2rem; z-index: 9999;
+  background: rgba(4,204,106,.12); border: 1px solid rgba(4,204,106,.3);
+  border-radius: 10px; padding: .6rem 1rem;
+  font-size: .72rem; font-weight: 600; color: var(--primary);
+  font-family: var(--font); letter-spacing: .05em;
+  backdrop-filter: blur(8px);
+}
+.react-banner span { color: var(--muted); font-weight: 400; margin-left: .3rem; }
