@@ -12,7 +12,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); over
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 #root { min-height: 100vh; }
 
-/* react note banner */
+
 .react-banner {
   position: fixed; bottom: 1.2rem; right: 1.2rem; z-index: 9999;
   background: rgba(4,204,106,.12); border: 1px solid rgba(4,204,106,.3);
