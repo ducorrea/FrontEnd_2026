@@ -1,4 +1,4 @@
-const { useState, useEffect, useRef } from 'react';
+const { useState, useEffect, useRef } = React;
 
 const C = {
   primary: '#04CC6A', primaryD: '#03A855', tertiary: '#64FFDA',
@@ -671,4 +671,4 @@ function App() {
   );
 }
 
-export default App;
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
