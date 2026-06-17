@@ -144,7 +144,7 @@ function HomePage({ setPage }) {
                 Equilibre <em style={{ color:C.primary, fontStyle:'italic' }}>Trabalho</em><br/>e Estudos com IA
               </h1>
               <p style={{ color:C.muted, fontSize:'1.05rem', marginBottom:'2rem', maxWidth:460, lineHeight:1.75 }}>
-                O assistente de estudos que cria e ajusta sua rotina automaticamente, para que você possa focar no que realmente importa: aprender.
+                O assistente de estudos que cria e ajusta sua rotina automaticamente, para que você possa focar no que realmente é essencial: aprender.
               </p>
               <div style={{ display:'flex', gap:'1rem', flexWrap:'wrap', marginBottom:'2.5rem' }}>
                 <button className="btn btn-primary" onClick={() => setPage('dashboard')}>Criar Meu Cronograma Inteligente</button>
